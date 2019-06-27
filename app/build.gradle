@@ -1,0 +1,146 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+    maven { url "https://dl.bintray.com/pi/maven" }
+    google()
+    jcenter()
+}
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION as int
+
+    dexOptions {
+        preDexLibraries true
+    }
+
+    defaultConfig {
+        versionCode 1
+        versionName "1.0.0"
+
+        minSdkVersion MIN_SDK_VERSION as int
+        targetSdkVersion TARGET_SDK_VERSION as int
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+        }
+        release {
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/maven/com.squareup.okhttp/okhttp/pom.properties'
+        exclude 'META-INF/maven/com.squareup.okhttp/okhttp/pom.xml'
+        exclude 'META-INF/maven/com.squareup.okio/okio/pom.properties'
+        exclude 'META-INF/maven/com.squareup.okio/okio/pom.xml'
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
+    }
+}
+
+
+dependencies {
+
+    // Support library
+    implementation "com.android.support:support-v4:${ANDROID_SUPPORT_VERSION}"
+    implementation "com.android.support:appcompat-v7:${ANDROID_SUPPORT_VERSION}"
+    implementation "com.android.support:design:${ANDROID_SUPPORT_VERSION}"
+    implementation "com.android.support:cardview-v7:${ANDROID_SUPPORT_VERSION}"
+    implementation "com.android.support:recyclerview-v7:${ANDROID_SUPPORT_VERSION}"
+    implementation "com.android.support.constraint:constraint-layout:${CONSTRAINTLAYOUT_VERSION}"
+
+    // Arch components
+    implementation "android.arch.lifecycle:runtime:${ARCH_LIFECYCLE_VERSION}"
+    implementation "android.arch.lifecycle:extensions:${ARCH_LIFECYCLE_VERSION}"
+    kapt "android.arch.lifecycle:compiler:${ARCH_LIFECYCLE_VERSION}"
+
+    // Data binding
+    kapt "com.android.databinding:compiler:${GRADLE_PLUGIN_VERSION}"
+
+    // Frameworks
+    implementation "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+    implementation "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${RETROFIT_VERSION}"
+    implementation "com.squareup.retrofit2:converter-scalars:${RETROFIT_VERSION}"
+    implementation "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
+    implementation "com.squareup.okhttp:okhttp-urlconnection:${OKHTTP_URLCONNECTION_VERSION}"
+
+    // Rx
+    implementation "io.reactivex.rxjava2:rxjava:${RXJAVA_VERSION}"
+    implementation "io.reactivex.rxjava2:rxandroid:${RXANDROID_VERSION}"
+
+    // Dagger
+    implementation "com.google.dagger:dagger:${DAGGER_VERSION}"
+    implementation "com.google.dagger:dagger-android:${DAGGER_VERSION}"
+    implementation "com.google.dagger:dagger-android-support:${DAGGER_VERSION}"
+    kapt "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+    kapt "com.google.dagger:dagger-android-processor:${DAGGER_VERSION}"
+
+    implementation "com.jakewharton.timber:timber:${TIMBER_VERSION}"
+    implementation "com.google.code.gson:gson:${GSON_VERSION}"
+    implementation "com.squareup.picasso:picasso:${PICASSO_VERSION}"
+
+    // Test Dependencies
+    testImplementation "junit:junit:${JUNIT_VERSION}"
+    testImplementation "org.mockito:mockito-core:${MOCKITO_VERSION}"
+    testImplementation "com.google.truth:truth:${GOOGLE_TRUTH_VERSION}"
+    testImplementation "pl.pragmatists:JUnitParams:${JUNIT_PARAMS_VERSION}"
+    testImplementation "org.robolectric:robolectric:${ROBOLECTRIC_VERSION}"
+    testImplementation "android.arch.core:core-testing:${ARCH_LIFECYCLE_VERSION}"
+    testImplementation "androidx.test:core:${ANDROIDX_TEST_CORE}"
+    testImplementation "androidx.test.ext:junit:${ANDROIDX_TEST_JUNIT}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${KOTLIN_COROUTINES_VERSION}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${KOTLIN_COROUTINES_VERSION}"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${KOTLIN_VERSION}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${KOTLIN_COROUTINES_VERSION}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${KOTLIN_COROUTINES_VERSION}"
+
+    //AndroidX - Core library
+    androidTestImplementation "androidx.test:core:${ANDROIDX_TEST_CORE}"
+    androidTestImplementation "org.mockito:mockito-core:${MOCKITO_VERSION}"
+
+    //AndroidX - AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation "androidx.test:runner:${ANDROIDX_TEST_JUNIT}"
+    androidTestImplementation "androidx.test:rules:${ANDROIDX_TEST_JUNIT}"
+
+    //AndroidX - Assertions
+    androidTestImplementation "androidx.test.ext:junit:${ANDROIDX_TEST_JUNIT}"
+    androidTestImplementation "androidx.test.ext:truth:${ANDROIDX_TEST_EXT}"
+    androidTestImplementation "com.google.truth:truth:${GOOGLE_TRUTH_VERSION}"
+
+    //AndroidX - Espresso dependencies
+    androidTestImplementation "androidx.test.espresso:espresso-core:${ANDROIDX_ESPRESSO}", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:${ANDROIDX_ESPRESSO}"
+
+}

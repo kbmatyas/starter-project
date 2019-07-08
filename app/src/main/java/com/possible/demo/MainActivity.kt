@@ -1,15 +1,18 @@
 package com.possible.demo
 
+import android.app.Activity
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -30,6 +33,8 @@ class MainActivity : AppCompatActivity() {
     private var adapter: DataAdapter? = null
 
     private var progressSpinner: ProgressBar? = null
+
+    private var imm: InputMethodManager? = null
 
     private val BASE_URL = "https://api.github.com/"
 
@@ -87,19 +92,41 @@ class MainActivity : AppCompatActivity() {
         return super.onPrepareOptionsMenu(menu)
     }
 
-    //***not relevant to my search implementation, ignore
-//    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//        val id = item?.itemId
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        //when new search, clear previous results
+        if (item?.itemId == R.id.action_search) {
+            followers_list.visibility = View.INVISIBLE
+            no_followers_text.visibility = View.GONE
+
+            item.setOnActionExpandListener(object: MenuItem.OnActionExpandListener {
+                override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                    return true
+                }
+
+                override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                    //when close out of search with back arrow, clear previous results
+                    followers_list.visibility = View.INVISIBLE
+                    no_followers_text.visibility = View.GONE
+
+                    //TODO NOT WORKING: close out of soft keyboard
+                    //val searchView = findViewById<SearchView>(R.id.action_search)
+                    getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm?.hideSoftInputFromWindow(item?.actionView?.windowToken, 0)
+                    return true
+                }
+            })
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    //only if main options menu bar was closed
+//    override fun onOptionsMenuClosed(menu: Menu?) {
+//        Log.v("onOptionsMenuClosed", "closed")
+//        followers_list.visibility = View.INVISIBLE
+//        no_followers_text.visibility = View.GONE
 //
-//        return if (id == R.id.search_button) {
-//            val searchManager = this.getSystemService(Context.SEARCH_SERVICE) as SearchManager
-//            searchManager.setOnDismissListener {
-//                followers_list.visibility = View.INVISIBLE
-//            }
-//            onSearchRequested()
-//        } else {
-//            super.onOptionsItemSelected(item)
-//        }
+//        super.onOptionsMenuClosed(menu)
 //    }
 
     private fun loadRecyclerView() {

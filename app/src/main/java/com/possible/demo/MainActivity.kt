@@ -13,6 +13,7 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuItemCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -132,9 +133,13 @@ class MainActivity : AppCompatActivity() {
     private fun loadRecyclerView() {
         followers_list.setHasFixedSize(true)
 
-        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
+        //to create grid for cardview
+        val gridLayoutManager = GridLayoutManager(this, 2)
 
-        followers_list.layoutManager = layoutManager
+        //old non gridview
+        //val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
+
+        followers_list.layoutManager = gridLayoutManager
     }
 
     /***SEARCHBAR QUERY HANDLING***/

@@ -1,6 +1,5 @@
 package com.possible.demo
 
-import android.app.Activity
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
@@ -12,10 +11,7 @@ import android.widget.ProgressBar
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -44,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         compositeDisposable = CompositeDisposable()
+
+        //dataBinding = DataBindingUtil.setContentView<ActivityMainBinding>()
 
         loadRecyclerView()
 
@@ -188,11 +186,13 @@ class MainActivity : AppCompatActivity() {
         Log.v("handleResponse", followersList.toString())
 
         if (followersList.isNotEmpty()) {
+            /***Regular Response Happy Path***/
             //hide the no followers message
             no_followers_text.visibility = View.GONE
             progressSpinner?.visibility = View.GONE
             followers_list.visibility = View.VISIBLE
 
+            //populate data
             followersArrayList = ArrayList(followersList)
             adapter = DataAdapter(followersArrayList!!)
 

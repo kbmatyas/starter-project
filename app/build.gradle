@@ -68,18 +68,18 @@ android {
 
 dependencies {
 
-    // Support library
-    implementation "com.android.support:support-v4:${ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support:appcompat-v7:${ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support:design:${ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support:cardview-v7:${ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support:recyclerview-v7:${ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support.constraint:constraint-layout:${CONSTRAINTLAYOUT_VERSION}"
+    // Support library Androidx
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation "androidx.appcompat:appcompat:1.0.2"
+    implementation "com.google.android.material:material:1.1.0-alpha07"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.recyclerview:recyclerview:1.0.0"
+    implementation "androidx.constraintlayout:constraintlayout:1.1.3"
 
-    // Arch components
-    implementation "android.arch.lifecycle:runtime:${ARCH_LIFECYCLE_VERSION}"
-    implementation "android.arch.lifecycle:extensions:${ARCH_LIFECYCLE_VERSION}"
-    kapt "android.arch.lifecycle:compiler:${ARCH_LIFECYCLE_VERSION}"
+    // Arch components Androidx
+    implementation "androidx.lifecycle:lifecycle-runtime:${ARCH_LIFECYCLE_VERSION}"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-alpha01"
+    kapt "androidx.lifecycle:lifecycle-compiler:2.0.0"
 
     // Data binding
     kapt "com.android.databinding:compiler:${GRADLE_PLUGIN_VERSION}"
@@ -91,6 +91,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-scalars:${RETROFIT_VERSION}"
     implementation "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
     implementation "com.squareup.okhttp:okhttp-urlconnection:${OKHTTP_URLCONNECTION_VERSION}"
+    implementation("com.squareup.okhttp3:logging-interceptor:${OKHTTP_VERSION}")
+    implementation "com.squareup.picasso:picasso:2.5.2"
+
 
     // Rx
     implementation "io.reactivex.rxjava2:rxjava:${RXJAVA_VERSION}"

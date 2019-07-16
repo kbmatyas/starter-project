@@ -1,8 +1,8 @@
 package com.possible.demo
 
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

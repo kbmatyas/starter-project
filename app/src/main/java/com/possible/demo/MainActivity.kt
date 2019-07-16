@@ -1,8 +1,8 @@
 package com.possible.demo
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val BASE_URL_GITHUB = "https://api.github.com/"
-        const val USERNAME_GITHUB = "jakelangfeldt"
+        const val USERNAME_GITHUB = "talinomedina"
         const val TAG_GITHUB = "GitHub"
     }
 }

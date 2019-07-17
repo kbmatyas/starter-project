@@ -1,5 +1,5 @@
 package com.possible.demo
 
-data class GithubLoginDataContainer (
-        val username: String
-) : DataContainer
+//data class GithubLoginDataContainer (
+//        val username: String
+//) : DataContainer

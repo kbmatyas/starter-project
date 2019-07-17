@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.possible.demo.GithubViewModel"/>
+    </data>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/followers_list"
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        android:visibility="visible"/>
+        app:items="@{viewModel.items}"
+        app:itemBinding="@{viewModel.itemBinding}"/>
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:items="@{viewModel.items}"
+        app:itemBinding="@{viewModel.itemBinding}"/>
 
-</RelativeLayout>
+</layout>

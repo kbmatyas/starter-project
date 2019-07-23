@@ -1,7 +1,6 @@
-package com.possible.demo.Network
+package com.possible.demo
 
-import com.possible.demo.Container.GithubLoginDataContainer
-import com.possible.demo.GitHubResponse
+import com.possible.demo.GithubLoginDataContainer
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path

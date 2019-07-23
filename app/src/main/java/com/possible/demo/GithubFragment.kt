@@ -1,16 +1,67 @@
 package com.possible.demo
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 
 class GithubFragment : Fragment() {
     private lateinit var viewModel: GithubViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        viewModel = ViewModelProviders.of(this).get()
-//        viewModel
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+       
+
+    companion object{
+
     }
 
 }
+
+/*  var disposable: CompositeDisposable = CompositeDisposable()
+    var adapter = GithubAdapter()
+
+    private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var recyclerView: RecyclerView
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        layoutManager = LinearLayoutManager(this)
+
+        val model = ViewModelProviders.of(this).get(GithubViewModel::class.java)
+
+        setupViews()
+
+        model.searchGithub(USERNAME_GITHUB, adapter)
+
+    }
+
+    private fun setupViews() {
+        recyclerView = findViewById(R.id.githubRecyclerView)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = adapter
+
+    }
+
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        disposable?.clear()
+    }
+
+
+    companion object {
+//        const val BASE_URL_GITHUB = "https://api.github.com/"
+        const val USERNAME_GITHUB = "talinomedina"
+//        const val TAG_GITHUB = "GitHub"
+    } */

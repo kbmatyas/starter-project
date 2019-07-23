@@ -2,9 +2,35 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/username"
+    <data>
+        <variable
+            name="follower"
+            type="com.possible.demo.GithubLoginDataContainer" />
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="200dp"
+        style="@style/CardView.Light">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/githubCardViewStyle">
+
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{follower.login}"
+                style="@style/gitHubLoginText"
+                android:drawableLeft="@drawable/ic_action_name"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.cardview.widget.CardView>
 
 </layout>

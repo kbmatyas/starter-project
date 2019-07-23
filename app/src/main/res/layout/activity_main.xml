@@ -7,9 +7,17 @@
             type="com.possible.demo.GithubViewModel"/>
     </data>
 
-    <android.support.v7.widget.RecyclerView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/githubRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scrollbarStyle="outsideInset"/>
+
+    </LinearLayout>
 
 </layout>

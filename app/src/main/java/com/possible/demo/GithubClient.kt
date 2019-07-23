@@ -1,8 +1,7 @@
-package com.possible.demo.Network
+package com.possible.demo
 
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
-import com.possible.demo.Container.GithubLoginDataContainer
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -29,8 +28,6 @@ class GithubClient {
 
     companion object {
         const val BASE_URL_GITHUB = "https://api.github.com/"
-        const val USERNAME_GITHUB = "talinomedina"
-        const val TAG_GITHUB = "GitHub"
 
         private var githubInstance: GithubClient? = null
 

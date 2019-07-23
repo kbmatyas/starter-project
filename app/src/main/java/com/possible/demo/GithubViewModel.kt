@@ -1,8 +1,6 @@
 package com.possible.demo
 
-import android.arch.lifecycle.ViewModel
-import com.possible.demo.Container.GithubLoginDataContainer
-import com.possible.demo.Network.GithubClient
+import androidx.lifecycle.ViewModel
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

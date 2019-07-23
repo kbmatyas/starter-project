@@ -1,4 +1,4 @@
-package com.possible.demo.Container
+package com.possible.demo
 
 data class GithubLoginDataContainer (
         var login: String?= null,

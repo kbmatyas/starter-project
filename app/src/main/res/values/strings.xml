@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">DemoApplication</string>
+    <string name="followers_label">Followers:</string>
+    <string name="search_for_github_user">Search for github user</string>
+    <string name="search_button_label">Search</string>
 </resources>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
+
         <variable
             name="viewModel"
-            type="com.possible.demo.GithubViewModel"/>
+            type="com.possible.demo.GithubViewModel" />
     </data>
 
     <LinearLayout
@@ -12,11 +13,39 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/githubRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbarStyle="outsideInset"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_for_github_user"
+            android:paddingEnd="150dp"
+            android:paddingStart ="0dp"
+            android:inputType="text"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "@string/search_button_label"
+                android:layout_gravity="end"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/followers_label"
+            android:textSize="30sp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/githubRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarStyle="outsideInset" />
 
     </LinearLayout>
 

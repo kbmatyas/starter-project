@@ -7,16 +7,9 @@
             type="com.possible.demo.GithubViewModel"/>
     </data>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:items="@{viewModel.items}"
-        app:itemBinding="@{viewModel.itemBinding}"/>
-
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/githubRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:items="@{viewModel.items}"
-        app:itemBinding="@{viewModel.itemBinding}"/>
+        android:layout_height="match_parent"/>
 
 </layout>

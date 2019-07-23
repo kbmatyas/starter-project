@@ -9,8 +9,8 @@ class GithubFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get()
-        viewModel
+//        viewModel = ViewModelProviders.of(this).get()
+//        viewModel
     }
 
 }

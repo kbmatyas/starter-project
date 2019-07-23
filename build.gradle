@@ -31,4 +31,3 @@ ext {
     sdkVersion = COMPILE_SDK_VERSION as int
     supportLibVersion = ANDROID_SUPPORT_VERSION
 }
-

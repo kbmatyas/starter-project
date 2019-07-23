@@ -69,20 +69,20 @@ android {
 dependencies {
 
     // Support library
-    implementation "com.android.support:support-v4:${ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support:appcompat-v7:${ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support:design:${ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support:cardview-v7:${ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support:recyclerview-v7:${ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support.constraint:constraint-layout:${CONSTRAINTLAYOUT_VERSION}"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
     // Arch components
-    implementation "android.arch.lifecycle:runtime:${ARCH_LIFECYCLE_VERSION}"
-    implementation "android.arch.lifecycle:extensions:${ARCH_LIFECYCLE_VERSION}"
-    kapt "android.arch.lifecycle:compiler:${ARCH_LIFECYCLE_VERSION}"
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
 
     // Data binding
-    kapt "com.android.databinding:compiler:${GRADLE_PLUGIN_VERSION}"
+    kapt 'androidx.databinding:databinding-compiler:3.2.0'
 
     // Frameworks
     implementation "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
@@ -113,7 +113,7 @@ dependencies {
     testImplementation "com.google.truth:truth:${GOOGLE_TRUTH_VERSION}"
     testImplementation "pl.pragmatists:JUnitParams:${JUNIT_PARAMS_VERSION}"
     testImplementation "org.robolectric:robolectric:${ROBOLECTRIC_VERSION}"
-    testImplementation "android.arch.core:core-testing:${ARCH_LIFECYCLE_VERSION}"
+    testImplementation 'androidx.arch.core:core-testing:2.0.0'
     testImplementation "androidx.test:core:${ANDROIDX_TEST_CORE}"
     testImplementation "androidx.test.ext:junit:${ANDROIDX_TEST_JUNIT}"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${KOTLIN_COROUTINES_VERSION}"

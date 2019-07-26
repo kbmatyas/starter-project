@@ -17,11 +17,11 @@
         <item name="contentPaddingRight">16dp</item>
         <item name="cardBackgroundColor">@color/cardBackground</item>
         <item name="android:layout_height">150dp</item>
-        <item name="android:layout_margin">30dp</item>
+        <item name="android:layout_width">wrap_content</item>
     </style>
 
     <style name="gitHubLoginText" >
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
 </resources>

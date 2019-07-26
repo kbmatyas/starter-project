@@ -20,6 +20,10 @@ class GithubFragment : Fragment() {
     companion object{
 
     }
+
+    fun openCardPage() {
+
+    }
 }
 
 /*  var disposable: CompositeDisposable = CompositeDisposable()

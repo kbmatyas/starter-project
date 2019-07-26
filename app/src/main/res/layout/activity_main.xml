@@ -23,15 +23,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/search_for_github_user"
-            android:paddingEnd="150dp"
-            android:paddingStart ="0dp"
+            android:paddingEnd="100dp"
+            android:paddingStart ="20dp"
             android:inputType="text"/>
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text = "@string/search_button_label"
-                android:layout_gravity="end"/>
+                android:text = "@string/search_button_label"/>
 
         </LinearLayout>
 

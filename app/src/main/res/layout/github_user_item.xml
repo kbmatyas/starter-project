@@ -3,32 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="follower"
             type="com.possible.demo.GithubLoginDataContainer" />
     </data>
 
     <androidx.cardview.widget.CardView
+        style="@style/CardView.Light"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        style="@style/CardView.Light">
+        android:layout_height="200dp"
+        android:layout_margin="15dp">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        style="@style/githubCardViewStyle">
+        <androidx.cardview.widget.CardView
+            style="@style/githubCardViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="openCard">
 
-            <TextView
-                android:id="@+id/username"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{follower.login}"
-                style="@style/gitHubLoginText"
-                android:drawableLeft="@drawable/ic_action_name"/>
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_action_name" />
+
+                <TextView
+                    android:id="@+id/username"
+                    style="@style/gitHubLoginText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{follower.login}" />
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
 
     </androidx.cardview.widget.CardView>
-
-
-</androidx.cardview.widget.CardView>
 
 </layout>

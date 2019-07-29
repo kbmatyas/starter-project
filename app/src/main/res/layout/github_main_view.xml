@@ -41,11 +41,11 @@
             android:text="@string/followers_label"
             android:textSize="30sp"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/githubRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbarStyle="outsideInset" />
+        <!--<androidx.recyclerview.widget.RecyclerView-->
+            <!--&lt;!&ndash;android:id="@+id/githubRecyclerView"&ndash;&gt;-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:scrollbarStyle="outsideInset" />-->
 
     </LinearLayout>
 

@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     var disposable: CompositeDisposable = CompositeDisposable()
     var adapter = GithubAdapter()
+
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var recyclerView: RecyclerView
 
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        layoutManager = GridLayoutManager(this,2)
+        layoutManager = GridLayoutManager(this,3)
 
         val model = ViewModelProviders.of(this).get(GithubViewModel::class.java)
 

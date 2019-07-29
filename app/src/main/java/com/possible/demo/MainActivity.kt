@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.disposables.CompositeDisposable
-import android.R
 
 
 
@@ -27,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
         layoutManager = GridLayoutManager(this,3)
 
@@ -63,3 +63,6 @@ class MainActivity : AppCompatActivity() {
 //        const val TAG_GITHUB = "GitHub"
     }
 }
+
+
+

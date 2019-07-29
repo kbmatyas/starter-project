@@ -1,13 +1,15 @@
 package com.possible.demo
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.disposables.CompositeDisposable
+import android.R
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -17,9 +19,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var recyclerView: RecyclerView
 
+    val fragmentManager = supportFragmentManager
+    val fragmentTransaction = fragmentManager.beginTransaction()
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         layoutManager = GridLayoutManager(this,2)
 
@@ -28,6 +34,10 @@ class MainActivity : AppCompatActivity() {
         setupViews()
 
         model.searchGithub(USERNAME_GITHUB, adapter)
+
+        if (savedInstanceState == null) {
+//            fragmentTransaction.add(R.layo)
+        }
 
     }
 

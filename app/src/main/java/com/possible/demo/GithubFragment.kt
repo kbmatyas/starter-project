@@ -10,8 +10,10 @@ class GithubFragment : Fragment() {
     private lateinit var viewModel: GithubViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+//        return inflater.inflate(R.layout.github_main_view, container, false)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -24,6 +26,17 @@ class GithubFragment : Fragment() {
     fun openCardPage() {
 
     }
+
+
+//    override fun onCreate(){
+//
+//    }
+//
+//    override fun onPause(){
+//
+//    }
+
+
 }
 
 /*  var disposable: CompositeDisposable = CompositeDisposable()
@@ -35,7 +48,7 @@ class GithubFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.github_main_view)
 
         layoutManager = LinearLayoutManager(this)
 

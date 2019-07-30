@@ -3,4 +3,5 @@
     <string name="followers_label">Followers:</string>
     <string name="search_for_github_user">Search for github user</string>
     <string name="search_button_label">Search</string>
+    <string name="followers">%1$s\'s followers</string>
 </resources>

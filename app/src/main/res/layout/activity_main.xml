@@ -1,54 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.possible.demo.GithubViewModel" />
+            type="com.possible.demo.GithubFollowerData.GithubViewModel" />
     </data>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:layout_marginBottom="30dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/innerLinearLayout"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/search_for_github_user"
-            android:paddingEnd="150dp"
-            android:paddingStart ="0dp"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:paddingStart="0dp"
+            android:paddingEnd="150dp" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text = "@string/search_button_label"
-                android:layout_gravity="end"/>
-
-        </LinearLayout>
-
-        <TextView
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/followers_label"
-            android:textSize="30sp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/githubRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbarStyle="outsideInset" />
+            android:layout_gravity="end"
+            android:text="@string/search_button_label" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/followerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/followers_label"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/innerLinearLayout"
+        app:layout_constraintStart_toStartOf="@id/innerLinearLayout"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/githubRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbarStyle="outsideInset"
+        app:layout_constraintTop_toBottomOf="@id/followerTextView"
+        app:layout_constraintStart_toStartOf="@id/followerTextView"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

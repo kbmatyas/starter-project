@@ -1,4 +1,4 @@
-package com.possible.demo
+package com.possible.demo.InnerFollowerData
 
 import androidx.lifecycle.ViewModel
 

@@ -1,6 +1,8 @@
-package com.possible.demo
+package com.possible.demo.GithubFollowerData
 
 import androidx.lifecycle.ViewModel
+import com.possible.demo.GithubClient
+import com.possible.demo.GithubLoginDataContainer
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -8,6 +10,8 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 
 class GithubViewModel : ViewModel() {
+
+    var username = ""
 
 
     var subject: PublishSubject<Boolean> = PublishSubject.create()
@@ -18,6 +22,7 @@ class GithubViewModel : ViewModel() {
 
     fun searchGithub(username: String, adapter: GithubAdapter) {
         if (username.isNotEmpty()) {
+            this.username = username
             GithubClient.getInstance()
                     .getFollowerData(username)
                     .subscribeOn(Schedulers.io())

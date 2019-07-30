@@ -1,4 +1,4 @@
-package com.possible.demo
+package com.possible.demo.GithubFollowerData
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.possible.demo.GithubLoginDataContainer
+import com.possible.demo.R
 
 class GithubAdapter: RecyclerView.Adapter<GithubAdapter.ViewHolder>() {
 
@@ -20,7 +22,7 @@ class GithubAdapter: RecyclerView.Adapter<GithubAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = githubFollowers.size
 
-    override fun onBindViewHolder(holder :ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder : ViewHolder, position: Int) {
         holder.bindItems(githubFollowers[position], context)
     }
 

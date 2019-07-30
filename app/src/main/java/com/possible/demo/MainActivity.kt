@@ -1,17 +1,29 @@
 package com.possible.demo
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.possible.demo.GithubFollowerData.GithubAdapter
+import com.possible.demo.GithubFollowerData.GithubFragment
+import com.possible.demo.GithubFollowerData.GithubViewModel
 import io.reactivex.disposables.CompositeDisposable
+import timber.log.Timber
 
 
+class MainActivity : BaseFragmentActivity(), GithubFragment.Callbacks {
 
+    override fun createFragment(): Fragment {
+        Timber.tag("LEXIE").d("MainActivity: createFragment()")
+        return GithubFragment()
+    }
 
-class MainActivity : AppCompatActivity() {
+    override fun onFollowerSelected(followerUsername : String) {
+        Timber.tag("LEXIE").d("MainActivity: onFollowerSelected()")
+//        if()
+    }
 
     var disposable: CompositeDisposable = CompositeDisposable()
     var adapter = GithubAdapter()
@@ -20,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
 
     val fragmentManager = supportFragmentManager
-    val fragmentTransaction = fragmentManager.beginTransaction()
+    val fragmentTransaction = supportFragmentManager.beginTransaction()
 
 
 
@@ -28,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        layoutManager = GridLayoutManager(this,3)
+        layoutManager = GridLayoutManager(this,2)
 
         val model = ViewModelProviders.of(this).get(GithubViewModel::class.java)
 
@@ -37,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         model.searchGithub(USERNAME_GITHUB, adapter)
 
         if (savedInstanceState == null) {
-//            fragmentTransaction.add(R.layo)
+//            fragmentTransaction.add(R.layout.activity_main, )
         }
 
     }

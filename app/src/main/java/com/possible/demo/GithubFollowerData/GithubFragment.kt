@@ -1,13 +1,24 @@
-package com.possible.demo
+package com.possible.demo.GithubFollowerData
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import timber.log.Timber
 
 class GithubFragment : Fragment() {
+    interface Callbacks {
+        fun onFollowerSelected(followerUsername: String)
+    }
+
     private lateinit var viewModel: GithubViewModel
+    private lateinit var adapter: GithubAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Timber.tag("LEXIE").d("GithubFragment: onCreate()")
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 //        return inflater.inflate(R.layout.github_main_view, container, false)

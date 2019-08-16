@@ -8,17 +8,20 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.possible.demo.R
-import com.possible.demo.databinding.FragmentMainBinding
+import com.possible.demo.databinding.FragmentFollowersBinding
 
 class FollowersFragment : androidx.fragment.app.Fragment() {
+
+    private lateinit var followersViewModel: FollowersViewModel
+    lateinit var toReposFragmentCb: (login: String) -> Unit
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val binding: FragmentMainBinding = DataBindingUtil.inflate(
-                inflater, R.layout.fragment_main, container, false)
+        val binding: FragmentFollowersBinding = DataBindingUtil.inflate(
+                inflater, R.layout.fragment_followers, container, false)
 
-        val followersViewModel =
+        followersViewModel =
                 ViewModelProviders.of(
                         this).get(FollowersViewModel::class.java)
         lifecycle.addObserver(followersViewModel)
@@ -29,12 +32,14 @@ class FollowersFragment : androidx.fragment.app.Fragment() {
         binding.followersList.adapter = adapter
 
         followersViewModel.followers.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.submitList(it)
+            it?.let { list ->
+                adapter.submitList(list.toList())
             }
         })
 
         binding.setLifecycleOwner(this)
+
+        followersViewModel.toReposFragmentCb = toReposFragmentCb
 
         return binding.root
     }

@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">DemoApplication</string>
 
-    <!-- followers -->
-    <string name="followers">Followers</string>
-    <string name="follower">Follower:</string>
-    <string name="login">login: %1$s</string>
+    <!-- repos -->
+    <string name="followers">Followers:</string>
     <string name="get_followers">Get followers</string>
+    <string name="login">Login:</string>
+    <string name="enter_login">Enter a login</string>
     <string name="loading">Loading&#8230;</string>
+    <string name="error_followers">Error loading followers</string>
+    <string name="repos">Repos:</string>
+    <string name="error_repos">Error loading repos</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.possible.demo.features.followers
+package com.possible.demo.features.repos
 
 import android.view.View
 import androidx.lifecycle.Lifecycle
@@ -12,14 +12,13 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
-class FollowersViewModel : ViewModel(), LifecycleObserver {
+class ReposViewModel : ViewModel(), LifecycleObserver {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
     private val gitHubRepo = GitHubRepo()
 
-    val login = MutableLiveData<String>().apply {
-        value = "jakelangfeldt"
-    }
-    val followers = MutableLiveData<List<Follower>>()
+    lateinit var login: String
+
+    val repos = MutableLiveData<List<Repo>>()
     val loadingVisibility = MutableLiveData<Int>()
     val errorVisibility = MutableLiveData<Int>()
 
@@ -27,45 +26,40 @@ class FollowersViewModel : ViewModel(), LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
-        Timber.plant(Timber.DebugTree())
-
         loadingVisibility.value = View.GONE
         errorVisibility.value = View.GONE
+
+        getFollowers()
     }
 
-    fun onGetFollowers() {
-        followers.value = mutableListOf()
+    private fun getFollowers() {
+        repos.value = mutableListOf()
 
         loadingVisibility.value = View.VISIBLE
         errorVisibility.value = View.GONE
 
-        login.value?.let {
-            compositeDisposable.add(gitHubRepo.getFollowers(it)
+        login.let {
+            compositeDisposable.add(gitHubRepo.getRepos(it)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread()).subscribe(
-                            ::onFollowersLoaded,
-                            ::onFollowersLoadedError
+                            ::onReposLoaded,
+                            ::onReposLoadedError
                     )
             )
         }
     }
 
-    private fun onFollowersLoaded(followerResponseList: List<FollowerResponse>) {
-        followers.value = followerResponseList.mapNotNull {
-            Timber.i("login: " + it.login)
-            Timber.i("avatar_url: " + it.avatarUrl)
+    private fun onReposLoaded(repoResponseList: List<RepoResponse>) {
+        repos.value = repoResponseList.mapNotNull {
+            Timber.i("name: " + it.name)
 
-            if (it.login != null && it.avatarUrl != null) {
-                Follower(it.login, it.avatarUrl, toReposFragmentCb)
-            } else {
-                null
-            }
+            Repo(it.name)
         }
 
         loadingVisibility.value = View.GONE
     }
 
-    private fun onFollowersLoadedError(throwable: Throwable) {
+    private fun onReposLoadedError(throwable: Throwable) {
         Timber.e(throwable.message)
 
         loadingVisibility.value = View.GONE

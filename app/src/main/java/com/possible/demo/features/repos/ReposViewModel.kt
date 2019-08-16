@@ -10,9 +10,20 @@ import com.possible.demo.data.GitHubRepo
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import timber.log.Timber
+import kotlin.coroutines.CoroutineContext
 
-class ReposViewModel : ViewModel(), LifecycleObserver {
+class ReposViewModel : ViewModel(), LifecycleObserver, CoroutineScope {
+
+    private var reposViewModelJob: Job = SupervisorJob()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + reposViewModelJob
+
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
     private val gitHubRepo = GitHubRepo()
 
@@ -24,15 +35,21 @@ class ReposViewModel : ViewModel(), LifecycleObserver {
 
     lateinit var toReposFragmentCb: (login: String) -> Unit
 
+    private val usingCoroutines = true
+
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
         loadingVisibility.value = View.GONE
         errorVisibility.value = View.GONE
 
-        getFollowers()
+        if (usingCoroutines) {
+            getReposWithCoroutines()
+        } else {
+            getRepos()
+        }
     }
 
-    private fun getFollowers() {
+    private fun getRepos() {
         repos.value = mutableListOf()
 
         loadingVisibility.value = View.VISIBLE
@@ -46,6 +63,23 @@ class ReposViewModel : ViewModel(), LifecycleObserver {
                             ::onReposLoadedError
                     )
             )
+        }
+    }
+
+    private fun getReposWithCoroutines() {
+        repos.value = mutableListOf()
+
+        loadingVisibility.value = View.VISIBLE
+        errorVisibility.value = View.GONE
+
+        launch(Dispatchers.Main) {
+            runCatching {
+                gitHubRepo.getReposWithCoroutines(login)
+            }.onSuccess { repoResponseList ->
+                onReposLoaded(repoResponseList)
+            }.onFailure { throwable ->
+                onReposLoadedError(throwable)
+            }
         }
     }
 
@@ -69,6 +103,7 @@ class ReposViewModel : ViewModel(), LifecycleObserver {
     override fun onCleared() {
         super.onCleared()
 
+        reposViewModelJob.cancel()
         compositeDisposable.clear()
 
         Timber.i("onCleared")

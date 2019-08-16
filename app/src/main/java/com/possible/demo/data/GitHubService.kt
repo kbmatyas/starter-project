@@ -15,16 +15,22 @@ interface GitHubService {
 
     @GET("users/{username}/repos")
     fun getRepos(@Path("username") username: String): Observable<List<RepoResponse>>
+
+    @GET("users/{username}/followers")
+    suspend fun getFollowersWithCoroutines(@Path("username") username: String): List<FollowerResponse>
+
+    @GET("users/{username}/repos")
+    suspend fun getReposWithCoroutines(@Path("username") username: String): List<RepoResponse>
 }
 
 object GitHubServiceObject {
     private const val BASE_URL_GITHUB = "https://api.github.com/"
 
     val get: GitHubService =
-        Retrofit.Builder()
-                .baseUrl(BASE_URL_GITHUB)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
-                .create(GitHubService::class.java)
+            Retrofit.Builder()
+                    .baseUrl(BASE_URL_GITHUB)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build()
+                    .create(GitHubService::class.java)
 }

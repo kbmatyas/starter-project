@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class=".FollowerListFragmentBinding">
+
+        <variable
+            name="viewModel"
+            type="com.possible.demo.feature.users.viewmodel.FollowerListViewModel" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="@string/followers" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/first_keyline"
+                android:layout_marginTop="@dimen/small_content_padding"
+                android:layout_marginEnd="@dimen/first_keyline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/search_for_user"
+                    android:text="@={viewModel.searchText}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/user_list"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:isVisible="@{viewModel.isLoaded}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input"
+                tools:listitem="@layout/item_user" />
+
+            <ProgressBar
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:isVisible="@{viewModel.isLoading}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input" />
+
+            <TextView
+                android:id="@+id/missing_search_term"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/first_keyline"
+                android:layout_marginEnd="@dimen/first_keyline"
+                android:gravity="center"
+                android:text="@string/change_search_for_results"
+                android:textAppearance="@style/PlaceholderTitleText"
+                app:isVisible="@{viewModel.isSearchTermMissing}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input" />
+
+            <!-- region Error -->
+            <TextView
+                android:id="@+id/error_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@{viewModel.errorText}"
+                android:textAppearance="@style/PlaceholderTitleText"
+                app:isVisible="@{viewModel.isError}"
+                app:layout_constraintBottom_toTopOf="@id/retry"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Something went wrong" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/retry"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/first_keyline"
+                android:onClick="@{() -> viewModel.retry()}"
+                android:text="@string/try_again"
+                app:isVisible="@{viewModel.errorActionButtonVisible &amp;&amp; viewModel.isError}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/error_label" />
+            <!-- endregion Error -->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

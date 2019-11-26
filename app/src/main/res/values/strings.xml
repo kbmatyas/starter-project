@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">DemoApplication</string>
+
+    <string name="content_desc_avatar">Avatar of the user</string>
+
+    <!-- General error -->
+    <string name="no_connection">No connection</string>
+    <string name="try_again">Try again</string>
+
+    <!-- Followers -->
+    <string name="followers">Followers</string>
+    <string name="search_for_user">Search for user</string>
+    <string name="change_search_for_results">Type at least 2 characters in order to get results.</string>
+    <string name="user_not_found">User not found</string>
+    <string name="follower_list_load_error">Unable to load follower list</string>
+
+    <!-- Repositories-->
+    <string name="repositories_for">%s\'s repositories</string>
+    <string name="repository_list_load_error">Unable to load repository list</string>
+    <string name="empty_repository_list">Looks like there are not public repositories for this user</string>
+
+    <string name="nothing" />
+
 </resources>

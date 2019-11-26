@@ -1,9 +1,10 @@
-package com.possible.demo
+package com.possible.demo.feature
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.possible.demo.R
+import dagger.android.support.DaggerAppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

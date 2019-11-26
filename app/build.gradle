@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 repositories {
     mavenCentral()
@@ -59,6 +60,10 @@ android {
         experimental = true
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     testOptions {
         unitTests.returnDefaultValues = true
         unitTests.includeAndroidResources = true
@@ -86,6 +91,7 @@ dependencies {
     implementation "com.google.android.material:material:${ANDROIDX_VERSION}"
     implementation "androidx.cardview:cardview:${ANDROIDX_VERSION}"
     implementation "androidx.recyclerview:recyclerview:${ANDROIDX_VERSION}"
+    implementation "androidx.constraintlayout:constraintlayout:1.1.0"
 
     // Arch components
     implementation "androidx.lifecycle:lifecycle-runtime:${ANDROIDX_ARCHCOMPONENTS_VERSION}"
@@ -98,6 +104,7 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:${RETROFIT_VERSION}"
     implementation "com.squareup.retrofit2:converter-scalars:${RETROFIT_VERSION}"
     implementation "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${OKHTTP_VERSION}"
     implementation "com.squareup.okhttp:okhttp-urlconnection:${OKHTTP_URLCONNECTION_VERSION}"
 
     // Rx
@@ -121,6 +128,11 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${KOTLIN_COROUTINES_VERSION}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${KOTLIN_COROUTINES_VERSION}"
 
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment:${NAV_COMPONENT_VERSION}"
+    implementation "androidx.navigation:navigation-ui:${NAV_COMPONENT_VERSION}"
+    implementation "androidx.navigation:navigation-fragment-ktx:${NAV_COMPONENT_VERSION}"
+    implementation "androidx.navigation:navigation-ui-ktx:${NAV_COMPONENT_VERSION}"
 
     //AndroidX - Core library
     androidTestImplementation "androidx.test:core:${ANDROIDX_TEST_CORE}"
